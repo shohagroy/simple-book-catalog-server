@@ -5,6 +5,18 @@ const createNewBook = async (payload: IBook) => {
   return result;
 };
 
+const getAllBooks = async () => {
+  const result = await Book.find();
+  return result;
+};
+
+const getSingleBook = async (id: string) => {
+  const result = await Book.findById(id);
+  return result;
+};
+
 export const bookService = {
   createNewBook,
+  getAllBooks,
+  getSingleBook,
 };

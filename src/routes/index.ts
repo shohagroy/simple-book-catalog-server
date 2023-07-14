@@ -5,9 +5,9 @@ const router = express.Router();
 
 router
   .route("/books")
-  .get((req, res) => {
-    res.send("all ok");
-  })
+  .get(bookController.getAllBooks)
   .post(bookController.createNewBook);
+
+router.route("/books/:id").get(bookController.getSingleBook);
 
 export const rootRouter = router;
