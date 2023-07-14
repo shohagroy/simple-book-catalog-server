@@ -8,6 +8,9 @@ router
   .get(bookController.getAllBooks)
   .post(bookController.createNewBook);
 
-router.route("/books/:id").get(bookController.getSingleBook);
+router
+  .route("/books/:id")
+  .get(bookController.getSingleBook)
+  .delete(bookController.deleteSingleBook);
 
 export const rootRouter = router;
