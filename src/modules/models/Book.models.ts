@@ -40,7 +40,6 @@ const bookSchema: Schema<IBook> = new Schema<IBook>(
     },
     image: {
       type: String,
-      required: true,
     },
     price: {
       type: Number,
