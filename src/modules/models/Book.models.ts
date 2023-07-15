@@ -1,5 +1,10 @@
 import { Document, model, Model, Schema } from "mongoose";
 
+export interface ICollection {
+  user: string;
+  status: string;
+}
+
 export interface IBook extends Document {
   title: string;
   author: string;
@@ -8,6 +13,8 @@ export interface IBook extends Document {
   image: string;
   price: number;
   rating: number;
+  wishlist: string[];
+  collections: ICollection[];
   addedBy: string;
 }
 
@@ -48,6 +55,27 @@ const bookSchema: Schema<IBook> = new Schema<IBook>(
     rating: {
       type: Number,
       required: true,
+    },
+    wishlist: {
+      type: [],
+    },
+    collections: {
+      type: [
+        {
+          user: {
+            type: String,
+            required: true,
+            lowercase: true,
+            trim: true,
+          },
+          status: {
+            type: String,
+            required: true,
+            lowercase: true,
+            trim: true,
+          },
+        },
+      ],
     },
     addedBy: {
       type: String,
