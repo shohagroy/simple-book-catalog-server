@@ -1,5 +1,5 @@
+import catchAsync from "../../shared/CatchAsync";
 import sendResponse from "../../shared/SendResponse";
-import catchAsync from "../../shared/catchAsync";
 import { IBook } from "../models/Book.models";
 import { bookService } from "../services/Book.services";
 import httpStatus from "http-status";
