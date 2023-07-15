@@ -14,7 +14,6 @@ const globalErrorHandler: ErrorRequestHandler = (
 ) => {
   envConfig.node_environment === "development" &&
     console.log(`🐱‍🏍 globalErrorHandler ~~`, error);
-  console.log("this is global errlr handelar ");
 
   let statusCode = 500;
   let message = "Something went wrong!";
