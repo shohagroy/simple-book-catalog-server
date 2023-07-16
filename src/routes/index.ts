@@ -1,5 +1,6 @@
 import express from "express";
 import { bookController } from "../modules/controllers/Book.controllers";
+import { reviewControllers } from "../modules/controllers/Review.controllers";
 
 const router = express.Router();
 
@@ -26,5 +27,8 @@ router
   .get(bookController.getUserCollections)
   .delete(bookController.deleteUserBookCollection)
   .patch(bookController.updateUserBookCollection);
+
+router.route("/reviews").post(reviewControllers.createBooksReview);
+router.route("/reviews/:id").get(reviewControllers.getBookReviews);
 
 export const rootRouter = router;
