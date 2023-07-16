@@ -1,4 +1,7 @@
+import { bookFilterableFields } from "../../Constants/BookContant";
+import { paginationFields } from "../../Constants/Pagination";
 import catchAsync from "../../shared/CatchAsync";
+import pick from "../../shared/Pick";
 import sendResponse from "../../shared/SendResponse";
 import { IBook } from "../models/Book.models";
 import { bookService } from "../services/Book.services";
@@ -16,13 +19,16 @@ const createNewBook = catchAsync(async (req, res) => {
 });
 
 const getAllBooks = catchAsync(async (req, res) => {
-  const response = await bookService.getAllBooks();
+  const filters = pick(req.query, bookFilterableFields);
+  const paginationOptions = pick(req.query, paginationFields);
 
-  sendResponse<IBook[]>(res, {
-    statusCode: httpStatus.OK,
+  const response = await bookService.getAllBooks(paginationOptions, filters);
+
+  res.status(httpStatus.OK).json({
     success: true,
     message: "Books recvied successfully",
-    data: response,
+    meta: response.meta,
+    data: response.data,
   });
 });
 
@@ -50,7 +56,6 @@ const deleteSingleBook = catchAsync(async (req, res) => {
 });
 
 const updateBookInfo = catchAsync(async (req, res) => {
-  // const { id } = req.params;
   const response = await bookService.updateBookInfo(req.body);
 
   sendResponse<IBook>(res, {
