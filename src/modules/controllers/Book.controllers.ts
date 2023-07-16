@@ -124,6 +124,28 @@ const getUserCollections = catchAsync(async (req, res) => {
   });
 });
 
+const deleteUserBookCollection = catchAsync(async (req, res) => {
+  const response = await bookService.deleteUserBookCollection(req.body);
+
+  sendResponse<IBook>(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "Book Collection Delete Successfully",
+    data: response,
+  });
+});
+
+const updateUserBookCollection = catchAsync(async (req, res) => {
+  const response = await bookService.updateUserBookCollection(req.body);
+
+  sendResponse<IBook>(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "Book Collection status update Successfully",
+    data: response,
+  });
+});
+
 export const bookController = {
   createNewBook,
   getAllBooks,
@@ -135,4 +157,6 @@ export const bookController = {
   deleteUserWishlist,
   addCollections,
   getUserCollections,
+  deleteUserBookCollection,
+  updateUserBookCollection,
 };

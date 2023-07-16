@@ -66,6 +66,46 @@ const getUserCollections = async (email: string) => {
   return result;
 };
 
+const deleteUserBookCollection = async (data: {
+  id: string;
+  email: string;
+}) => {
+  const { id, email } = data;
+  const result = await Book.findByIdAndUpdate(
+    id,
+    { $pull: { collections: { user: email } } },
+    { new: true }
+  );
+
+  return result;
+};
+
+const updateUserBookCollection = async (data: {
+  id: string;
+  email: string;
+  value: string;
+}) => {
+  const { id, email, value } = data;
+
+  const updatedData = { user: email, status: value };
+
+  const deleteData = await Book.findByIdAndUpdate(
+    id,
+    { $pull: { collections: { user: email } } },
+    { new: true }
+  );
+
+  if (deleteData) {
+    const updateData = await Book.findByIdAndUpdate(
+      id,
+      { $push: { collections: updatedData } },
+      { new: true }
+    );
+
+    return updateData;
+  }
+};
+
 export const bookService = {
   createNewBook,
   getAllBooks,
@@ -77,4 +117,6 @@ export const bookService = {
   deleteUserWishlistBook,
   addCollections,
   getUserCollections,
+  deleteUserBookCollection,
+  updateUserBookCollection,
 };

@@ -24,6 +24,7 @@ router
   .route("/collections/:id")
   .post(bookController.addCollections)
   .get(bookController.getUserCollections)
-  .delete(bookController.deleteUserWishlist);
+  .delete(bookController.deleteUserBookCollection)
+  .patch(bookController.updateUserBookCollection);
 
 export const rootRouter = router;
