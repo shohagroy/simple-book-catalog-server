@@ -146,16 +146,16 @@ const deleteUserBookCollection = async (data: {
 
 const updateUserBookCollection = async (data: {
   id: string;
-  email: string;
-  value: string;
+  user: string;
+  status: string;
 }) => {
-  const { id, email, value } = data;
+  const { id, user, status } = data;
 
-  const updatedData = { user: email, status: value };
+  const updatedData = { user, status };
 
   const deleteData = await Book.findByIdAndUpdate(
     id,
-    { $pull: { collections: { user: email } } },
+    { $pull: { collections: { user: user } } },
     { new: true }
   );
 

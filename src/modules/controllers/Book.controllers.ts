@@ -106,9 +106,9 @@ const deleteUserWishlist = catchAsync(async (req: Request, res: Response) => {
 });
 
 const addCollections = catchAsync(async (req: Request, res: Response) => {
-  const { id } = req.params;
+  const { id, ...other } = req.body;
 
-  const response = await bookService.addCollections(id, req.body.data);
+  const response = await bookService.addCollections(id, other);
 
   sendResponse<IBook>(res, {
     statusCode: httpStatus.OK,
