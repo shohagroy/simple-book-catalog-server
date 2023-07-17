@@ -3,8 +3,9 @@ import { Error } from "mongoose";
 
 import ApiError from "../errorHandelars/ApiError";
 import handleValidationError from "../errorHandelars/HandleValidationError";
-import { IGenericErrorMessage } from "../inferfaces/Error";
 import envConfig from "../configs/envConfig";
+import { IGenericErrorMessage } from "../inferfaces/error";
+// import { IGenericErrorMessage } from "../inferfaces/Error";
 
 const globalErrorHandler: ErrorRequestHandler = (
   error,
