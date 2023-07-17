@@ -1,15 +1,4 @@
-export const bookFilterableFields = [
-  "searchTerm",
-  "id",
-  "gender",
-  "bloodGroup",
-  "email",
-  "contactNo",
-  "emergencyContactNo",
-  "academicFaculty",
-  "academicDepartment",
-  "designation",
-];
+export const bookFilterableFields = ["searchTerm", "genre", "publicationYear"];
 
 export const bookSearchableFields = [
   "title",

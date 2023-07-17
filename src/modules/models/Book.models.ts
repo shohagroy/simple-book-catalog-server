@@ -13,6 +13,7 @@ export interface IBook extends Document {
   image: string;
   price: number;
   rating: number;
+  publicationYear: string;
   wishlist: string[];
   collections: ICollection[];
   addedBy: string;
@@ -54,6 +55,10 @@ const bookSchema: Schema<IBook> = new Schema<IBook>(
     },
     rating: {
       type: Number,
+      required: true,
+    },
+    publicationYear: {
+      type: String,
       required: true,
     },
     wishlist: {

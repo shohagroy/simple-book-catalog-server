@@ -1,6 +1,7 @@
 import express from "express";
 import { bookController } from "../modules/controllers/Book.controllers";
 import { reviewControllers } from "../modules/controllers/Review.controllers";
+import { yearController } from "../modules/controllers/Year.controllers";
 
 const router = express.Router();
 
@@ -30,5 +31,6 @@ router
 
 router.route("/reviews").post(reviewControllers.createBooksReview);
 router.route("/reviews/:id").get(reviewControllers.getBookReviews);
+router.route("/years").get(yearController.getAllYears);
 
 export const rootRouter = router;

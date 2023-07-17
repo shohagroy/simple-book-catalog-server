@@ -3,7 +3,7 @@ import { Error } from "mongoose";
 
 import ApiError from "../errorHandelars/ApiError";
 import handleValidationError from "../errorHandelars/HandleValidationError";
-import { IGenericErrorMessage } from "../inferfaces/error";
+import { IGenericErrorMessage } from "../inferfaces/Error";
 import envConfig from "../configs/envConfig";
 
 const globalErrorHandler: ErrorRequestHandler = (
@@ -46,8 +46,6 @@ const globalErrorHandler: ErrorRequestHandler = (
         ]
       : [];
   }
-
-  console.log(statusCode, message, errorMessages);
 
   res.status(statusCode).json({
     success: false,

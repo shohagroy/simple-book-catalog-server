@@ -4,9 +4,17 @@ import { IBookFilters } from "../../inferfaces/BookInterface";
 import { IPaginationOptions } from "../../inferfaces/IPaginationOptions";
 import Book, { IBook, ICollection } from "../models/Book.models";
 import { bookSearchableFields } from "../../Constants/BookContant";
+import Year from "../models/YearModal";
 
 const createNewBook = async (payload: IBook) => {
-  const result = await Book.create(payload);
+  const publicationYear = payload.publicationDate.slice(0, 4);
+
+  const isExpected = await Year.findOne({ year: publicationYear });
+  if (!isExpected) {
+    await Year.create({ year: publicationYear });
+  }
+
+  const result = await Book.create({ ...payload, publicationYear });
   return result;
 };
 
