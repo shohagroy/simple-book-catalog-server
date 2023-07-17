@@ -3,8 +3,9 @@ import sendResponse from "../../shared/SendResponse";
 import httpStatus from "http-status";
 import { reviewServices } from "../services/Review.service";
 import { IReview } from "../models/Review.model";
+import { Request, Response } from "express";
 
-const createBooksReview = catchAsync(async (req, res) => {
+const createBooksReview = catchAsync(async (req: Request, res: Response) => {
   const response = await reviewServices.createBooksReview(req.body);
 
   sendResponse<IReview>(res, {
@@ -15,7 +16,7 @@ const createBooksReview = catchAsync(async (req, res) => {
   });
 });
 
-const getBookReviews = catchAsync(async (req, res) => {
+const getBookReviews = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
 
   const response = await reviewServices.getBookReviews(id);

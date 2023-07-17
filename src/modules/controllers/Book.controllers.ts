@@ -1,3 +1,4 @@
+import { Request, Response } from "express";
 import { bookFilterableFields } from "../../Constants/BookContant";
 import { paginationFields } from "../../Constants/Pagination";
 import catchAsync from "../../shared/CatchAsync";
@@ -7,7 +8,7 @@ import { IBook } from "../models/Book.models";
 import { bookService } from "../services/Book.services";
 import httpStatus from "http-status";
 
-const createNewBook = catchAsync(async (req, res) => {
+const createNewBook = catchAsync(async (req: Request, res: Response) => {
   const response = await bookService.createNewBook(req.body);
 
   sendResponse<IBook>(res, {
@@ -18,7 +19,7 @@ const createNewBook = catchAsync(async (req, res) => {
   });
 });
 
-const getAllBooks = catchAsync(async (req, res) => {
+const getAllBooks = catchAsync(async (req: Request, res: Response) => {
   const filters = pick(req.query, bookFilterableFields);
   const paginationOptions = pick(req.query, paginationFields);
 
@@ -32,7 +33,7 @@ const getAllBooks = catchAsync(async (req, res) => {
   });
 });
 
-const getSingleBook = catchAsync(async (req, res) => {
+const getSingleBook = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
   const response = await bookService.getSingleBook(id);
 
@@ -44,7 +45,7 @@ const getSingleBook = catchAsync(async (req, res) => {
   });
 });
 
-const deleteSingleBook = catchAsync(async (req, res) => {
+const deleteSingleBook = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
   const response = await bookService.deleteSingleBook(id);
   sendResponse<IBook>(res, {
@@ -55,7 +56,7 @@ const deleteSingleBook = catchAsync(async (req, res) => {
   });
 });
 
-const updateBookInfo = catchAsync(async (req, res) => {
+const updateBookInfo = catchAsync(async (req: Request, res: Response) => {
   const response = await bookService.updateBookInfo(req.body);
 
   sendResponse<IBook>(res, {
@@ -66,7 +67,7 @@ const updateBookInfo = catchAsync(async (req, res) => {
   });
 });
 
-const addWishList = catchAsync(async (req, res) => {
+const addWishList = catchAsync(async (req: Request, res: Response) => {
   const { email } = req.params;
   const { _id } = req.body;
   const response = await bookService.addWishList(_id, email);
@@ -79,7 +80,7 @@ const addWishList = catchAsync(async (req, res) => {
   });
 });
 
-const getUserWishLists = catchAsync(async (req, res) => {
+const getUserWishLists = catchAsync(async (req: Request, res: Response) => {
   const { email } = req.params;
   const response = await bookService.getUserWishList(email);
 
@@ -91,7 +92,7 @@ const getUserWishLists = catchAsync(async (req, res) => {
   });
 });
 
-const deleteUserWishlist = catchAsync(async (req, res) => {
+const deleteUserWishlist = catchAsync(async (req: Request, res: Response) => {
   const { email } = req.params;
   const { _id } = req.body;
   const response = await bookService.deleteUserWishlistBook(_id, email);
@@ -104,7 +105,7 @@ const deleteUserWishlist = catchAsync(async (req, res) => {
   });
 });
 
-const addCollections = catchAsync(async (req, res) => {
+const addCollections = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
 
   const response = await bookService.addCollections(id, req.body.data);
@@ -117,7 +118,7 @@ const addCollections = catchAsync(async (req, res) => {
   });
 });
 
-const getUserCollections = catchAsync(async (req, res) => {
+const getUserCollections = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
   const response = await bookService.getUserCollections(id);
 
@@ -129,27 +130,31 @@ const getUserCollections = catchAsync(async (req, res) => {
   });
 });
 
-const deleteUserBookCollection = catchAsync(async (req, res) => {
-  const response = await bookService.deleteUserBookCollection(req.body);
+const deleteUserBookCollection = catchAsync(
+  async (req: Request, res: Response) => {
+    const response = await bookService.deleteUserBookCollection(req.body);
 
-  sendResponse<IBook>(res, {
-    statusCode: httpStatus.OK,
-    success: true,
-    message: "Book Collection Delete Successfully",
-    data: response,
-  });
-});
+    sendResponse<IBook>(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: "Book Collection Delete Successfully",
+      data: response,
+    });
+  }
+);
 
-const updateUserBookCollection = catchAsync(async (req, res) => {
-  const response = await bookService.updateUserBookCollection(req.body);
+const updateUserBookCollection = catchAsync(
+  async (req: Request, res: Response) => {
+    const response = await bookService.updateUserBookCollection(req.body);
 
-  sendResponse<IBook>(res, {
-    statusCode: httpStatus.OK,
-    success: true,
-    message: "Book Collection status update Successfully",
-    data: response,
-  });
-});
+    sendResponse<IBook>(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: "Book Collection status update Successfully",
+      data: response,
+    });
+  }
+);
 
 export const bookController = {
   createNewBook,

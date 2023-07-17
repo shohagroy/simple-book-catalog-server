@@ -3,8 +3,9 @@ import sendResponse from "../../shared/SendResponse";
 import httpStatus from "http-status";
 import { yearServices } from "../services/Year.services";
 import { IYear } from "../models/YearModal";
+import { Request, Response } from "express";
 
-const getAllYears = catchAsync(async (req, res) => {
+const getAllYears = catchAsync(async (req: Request, res: Response) => {
   const response = await yearServices.getAllYears();
 
   sendResponse<IYear[]>(res, {
