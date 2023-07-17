@@ -1,4 +1,4 @@
-import catchAsync from "../../shared/CatchAsync";
+import catchAsync from "../../shared/catchAsync";
 import sendResponse from "../../shared/SendResponse";
 import httpStatus from "http-status";
 import { reviewServices } from "../services/Review.service";
