@@ -15,12 +15,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.bookController = void 0;
 const BookContant_1 = require("../../Constants/BookContant");
 const Pagination_1 = require("../../Constants/Pagination");
-const CatchAsync_1 = __importDefault(require("../../shared/CatchAsync"));
 const Pick_1 = __importDefault(require("../../shared/Pick"));
 const SendResponse_1 = __importDefault(require("../../shared/SendResponse"));
 const Book_services_1 = require("../services/Book.services");
 const http_status_1 = __importDefault(require("http-status"));
-const createNewBook = (0, CatchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const catchAsync_1 = __importDefault(require("../../shared/catchAsync"));
+const createNewBook = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const response = yield Book_services_1.bookService.createNewBook(req.body);
     (0, SendResponse_1.default)(res, {
         statusCode: http_status_1.default.CREATED,
@@ -29,7 +29,7 @@ const createNewBook = (0, CatchAsync_1.default)((req, res) => __awaiter(void 0, 
         data: response,
     });
 }));
-const getAllBooks = (0, CatchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const getAllBooks = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const filters = (0, Pick_1.default)(req.query, BookContant_1.bookFilterableFields);
     const paginationOptions = (0, Pick_1.default)(req.query, Pagination_1.paginationFields);
     const response = yield Book_services_1.bookService.getAllBooks(paginationOptions, filters);
@@ -40,7 +40,7 @@ const getAllBooks = (0, CatchAsync_1.default)((req, res) => __awaiter(void 0, vo
         data: response.data,
     });
 }));
-const getSingleBook = (0, CatchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const getSingleBook = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
     const response = yield Book_services_1.bookService.getSingleBook(id);
     (0, SendResponse_1.default)(res, {
@@ -50,7 +50,7 @@ const getSingleBook = (0, CatchAsync_1.default)((req, res) => __awaiter(void 0, 
         data: response,
     });
 }));
-const deleteSingleBook = (0, CatchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const deleteSingleBook = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
     const response = yield Book_services_1.bookService.deleteSingleBook(id);
     (0, SendResponse_1.default)(res, {
@@ -60,7 +60,7 @@ const deleteSingleBook = (0, CatchAsync_1.default)((req, res) => __awaiter(void 
         data: response,
     });
 }));
-const updateBookInfo = (0, CatchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const updateBookInfo = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const response = yield Book_services_1.bookService.updateBookInfo(req.body);
     (0, SendResponse_1.default)(res, {
         statusCode: http_status_1.default.OK,
@@ -69,7 +69,7 @@ const updateBookInfo = (0, CatchAsync_1.default)((req, res) => __awaiter(void 0,
         data: response,
     });
 }));
-const addWishList = (0, CatchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const addWishList = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { email } = req.params;
     const { _id } = req.body;
     const response = yield Book_services_1.bookService.addWishList(_id, email);
@@ -80,7 +80,7 @@ const addWishList = (0, CatchAsync_1.default)((req, res) => __awaiter(void 0, vo
         data: response,
     });
 }));
-const getUserWishLists = (0, CatchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const getUserWishLists = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { email } = req.params;
     const response = yield Book_services_1.bookService.getUserWishList(email);
     (0, SendResponse_1.default)(res, {
@@ -90,7 +90,7 @@ const getUserWishLists = (0, CatchAsync_1.default)((req, res) => __awaiter(void 
         data: response,
     });
 }));
-const deleteUserWishlist = (0, CatchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const deleteUserWishlist = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { email } = req.params;
     const { _id } = req.body;
     const response = yield Book_services_1.bookService.deleteUserWishlistBook(_id, email);
@@ -101,7 +101,7 @@ const deleteUserWishlist = (0, CatchAsync_1.default)((req, res) => __awaiter(voi
         data: response,
     });
 }));
-const addCollections = (0, CatchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const addCollections = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
     const response = yield Book_services_1.bookService.addCollections(id, req.body.data);
     (0, SendResponse_1.default)(res, {
@@ -111,7 +111,7 @@ const addCollections = (0, CatchAsync_1.default)((req, res) => __awaiter(void 0,
         data: response,
     });
 }));
-const getUserCollections = (0, CatchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const getUserCollections = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
     const response = yield Book_services_1.bookService.getUserCollections(id);
     (0, SendResponse_1.default)(res, {
@@ -121,7 +121,7 @@ const getUserCollections = (0, CatchAsync_1.default)((req, res) => __awaiter(voi
         data: response,
     });
 }));
-const deleteUserBookCollection = (0, CatchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const deleteUserBookCollection = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const response = yield Book_services_1.bookService.deleteUserBookCollection(req.body);
     (0, SendResponse_1.default)(res, {
         statusCode: http_status_1.default.OK,
@@ -130,7 +130,7 @@ const deleteUserBookCollection = (0, CatchAsync_1.default)((req, res) => __await
         data: response,
     });
 }));
-const updateUserBookCollection = (0, CatchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const updateUserBookCollection = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const response = yield Book_services_1.bookService.updateUserBookCollection(req.body);
     (0, SendResponse_1.default)(res, {
         statusCode: http_status_1.default.OK,

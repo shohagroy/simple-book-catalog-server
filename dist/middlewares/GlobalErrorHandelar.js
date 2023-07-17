@@ -7,7 +7,6 @@ const mongoose_1 = require("mongoose");
 const ApiError_1 = __importDefault(require("../errorHandelars/ApiError"));
 const HandleValidationError_1 = __importDefault(require("../errorHandelars/HandleValidationError"));
 const envConfig_1 = __importDefault(require("../configs/envConfig"));
-// import { IGenericErrorMessage } from "../inferfaces/Error";
 const globalErrorHandler = (error, req, res, next) => {
     envConfig_1.default.node_environment === "development" &&
         console.log(`🐱‍🏍 globalErrorHandler ~~`, error);
